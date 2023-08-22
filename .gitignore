@@ -1,0 +1,3 @@
+.env
+.idea/
+postgres/docker_postgres_init.sql

@@ -21,7 +21,8 @@ services:
             - ./backend:/app
         environment:
             - APP_URL=${BACKEND_URL}
-            - POSTGRES_URL=postgresql://${DB_USER}:${DB_PASSWORD}@postgres:5432/${CMS_DB_NAME}?schema=public
+            - POSTGRES_URL=postgresql://${DB_USER}:${DB_PASSWORD}@postgres:5432/${DB_NAME}?schema=public
+            - TEST_POSTGRES_URL=postgresql://${DB_USER}:${DB_PASSWORD}@postgres:5432/${TEST_DB_NAME}?schema=public
         depends_on:
             - postgres
 

@@ -1,17 +1,17 @@
-CREATE USER cms_user WITH PASSWORD 'secret' CREATEDB;
+CREATE USER ${DB_USER} WITH PASSWORD '${DB_PASSWORD}' CREATEDB;
 
-CREATE DATABASE cms
+CREATE DATABASE ${DB_NAME}
     WITH
-    OWNER = cms_user
+    OWNER = ${DB_USER}
     ENCODING = 'UTF8'
     LC_COLLATE = 'en_US.utf8'
     LC_CTYPE = 'en_US.utf8'
     TABLESPACE = pg_default
     CONNECTION LIMIT = -1;
 
-CREATE DATABASE communication
+CREATE DATABASE ${TEST_DB_NAME}
     WITH
-    OWNER = cms_user
+    OWNER = ${DB_USER}
     ENCODING = 'UTF8'
     LC_COLLATE = 'en_US.utf8'
     LC_CTYPE = 'en_US.utf8'
