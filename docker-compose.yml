@@ -1,0 +1,29 @@
+version: '3.9'
+
+services:
+    postgres:
+        image: postgres:15-alpine
+        ports:
+            - "5432:5432"
+        environment:
+            - POSTGRES_USER=root
+            - POSTGRES_PASSWORD=root
+            - POSTGRES_DB=root
+        volumes:
+            - postgres_data:/var/lib/postgresql/data
+            - ./postgres/docker_postgres_init.sql:/docker-entrypoint-initdb.d/docker_postgres_init.sql
+
+    backend:
+        build: ./backend
+        ports: 
+            - "4000:3000"
+        volumes:
+            - ./backend:/app
+        environment:
+            - APP_URL=${BACKEND_URL}
+            - POSTGRES_URL=postgresql://${DB_USER}:${DB_PASSWORD}@postgres:5432/${CMS_DB_NAME}?schema=public
+        depends_on:
+            - postgres
+
+volumes:
+    postgres_data:
